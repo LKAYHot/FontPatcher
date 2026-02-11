@@ -34,7 +34,7 @@ dotnet --version
 
 ### 3) Установка и сборка
 ```powershell
-git clone <your-repo-url>
+git clone https://github.com/LKAYHot/FontPatcher.git
 cd FontPatcher
 dotnet restore
 dotnet build FontPatcher.sln -c Release
@@ -254,7 +254,7 @@ dotnet --version
 
 ### 3) Install and Build
 ```powershell
-git clone <your-repo-url>
+git clone https://github.com/LKAYHot/FontPatcher.git
 cd FontPatcher
 dotnet restore
 dotnet build FontPatcher.sln -c Release
