@@ -399,3 +399,36 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# ------------------------------------------------------------
+# FontPatcher project-specific artifacts
+# ------------------------------------------------------------
+.localappdata/
+.repo_git/
+debug.log
+
+# Generated output bundles
+Fonts/
+
+# Web frontend (not part of publish scope)
+FontBundle/
+
+# Custom build/verification folders used in this repo
+**/bin_verify/
+**/bin_verify_fix/
+**/bin_verify_fix2/
+**/obj_verify/
+**/obj_verify_fix/
+**/obj_verify_fix2/
+**/bin_check/
+**/obj_check/
+**/bin_alt/
+**/obj_alt/
+**/obj_stylecheck/
+**/obj_autoscroll/
+**/tmpbuild/
+**/obj2/
+
+# Local environment files
+.env
+.env.*

@@ -1,5 +1,0 @@
-{
-  "name": "Unity Font Bundle Converter UI",
-  "description": "A professional configuration and monitoring interface for a C# CLI tool that converts standard fonts into Unity AssetBundles. Features full parameter control, batch processing management, and real-time build logging.",
-  "requestFramePermissions": []
-}
