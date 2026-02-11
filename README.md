@@ -44,9 +44,9 @@ dotnet build FontPatcher.sln -c Release
 Одиночная конверсия:
 ```powershell
 dotnet run --project .\FontPatcher.Cli\FontPatcher.Cli.csproj -- `
-  --font "G:\TinyTools2\FontPatcher\Fonts\arialuni_sdf_u2019.ttf" `
-  --output "G:\TinyTools2\FontPatcher\Fonts\Output" `
-  --target-game "G:\SteamLibrary\steamapps\common\Heartworm\Heartworm.exe"
+  --font "D:\insertpath\fonts\source-font.ttf" `
+  --output "D:\insertpath\output" `
+  --target-game "D:\insertpath\game\Game.exe"
 ```
 
 Пакетный режим (batch):
@@ -119,8 +119,8 @@ dotnet run --project .\FontPatcher.Avalonia\FontPatcher.Avalonia.csproj
   "jobs": [
     {
       "id": "job-1",
-      "font": "G:/path/to/font.ttf",
-      "output": "G:/path/to/output"
+      "font": "D:/insertpath/fonts/source-font.ttf",
+      "output": "D:/insertpath/output"
     }
   ]
 }
@@ -161,17 +161,17 @@ dotnet run --project .\FontPatcher.Avalonia\FontPatcher.Avalonia.csproj
 {
   "jobs": [
     {
-      "id": "heartworm-main",
-      "font": "G:/TinyTools2/FontPatcher/Fonts/arialuni_sdf_u2019.ttf",
-      "output": "G:/TinyTools2/FontPatcher/Fonts/Output/heartworm",
-      "targetGame": "G:/SteamLibrary/steamapps/common/Heartworm/Heartworm.exe",
+      "id": "game-main",
+      "font": "D:/insertpath/fonts/source-font.ttf",
+      "output": "D:/insertpath/output/game-main",
+      "targetGame": "D:/insertpath/game/Game.exe",
       "buildTarget": "StandaloneWindows64",
       "epoch": "auto"
     },
     {
-      "id": "legacy-2020-override",
-      "font": "G:/TinyTools2/FontPatcher/Fonts/arialuni_sdf_u2019.ttf",
-      "output": "G:/TinyTools2/FontPatcher/Fonts/Output/legacy",
+      "id": "legacy-override",
+      "font": "D:/insertpath/fonts/source-font.ttf",
+      "output": "D:/insertpath/output/legacy",
       "unityVersion": "2020.3.49f1",
       "epoch": "legacy",
       "useNoGraphics": false,
@@ -264,9 +264,9 @@ dotnet build FontPatcher.sln -c Release
 Single conversion:
 ```powershell
 dotnet run --project .\FontPatcher.Cli\FontPatcher.Cli.csproj -- `
-  --font "G:\TinyTools2\FontPatcher\Fonts\arialuni_sdf_u2019.ttf" `
-  --output "G:\TinyTools2\FontPatcher\Fonts\Output" `
-  --target-game "G:\SteamLibrary\steamapps\common\Heartworm\Heartworm.exe"
+  --font "D:\insertpath\fonts\source-font.ttf" `
+  --output "D:\insertpath\output" `
+  --target-game "D:\insertpath\game\Game.exe"
 ```
 
 Batch mode:
@@ -339,8 +339,8 @@ Document root:
   "jobs": [
     {
       "id": "job-1",
-      "font": "G:/path/to/font.ttf",
-      "output": "G:/path/to/output"
+      "font": "D:/insertpath/fonts/source-font.ttf",
+      "output": "D:/insertpath/output"
     }
   ]
 }
@@ -381,17 +381,17 @@ Required after merge: `font` and `output`.
 {
   "jobs": [
     {
-      "id": "heartworm-main",
-      "font": "G:/TinyTools2/FontPatcher/Fonts/arialuni_sdf_u2019.ttf",
-      "output": "G:/TinyTools2/FontPatcher/Fonts/Output/heartworm",
-      "targetGame": "G:/SteamLibrary/steamapps/common/Heartworm/Heartworm.exe",
+      "id": "game-main",
+      "font": "D:/insertpath/fonts/source-font.ttf",
+      "output": "D:/insertpath/output/game-main",
+      "targetGame": "D:/insertpath/game/Game.exe",
       "buildTarget": "StandaloneWindows64",
       "epoch": "auto"
     },
     {
-      "id": "legacy-2020-override",
-      "font": "G:/TinyTools2/FontPatcher/Fonts/arialuni_sdf_u2019.ttf",
-      "output": "G:/TinyTools2/FontPatcher/Fonts/Output/legacy",
+      "id": "legacy-override",
+      "font": "D:/insertpath/fonts/source-font.ttf",
+      "output": "D:/insertpath/output/legacy",
       "unityVersion": "2020.3.49f1",
       "epoch": "legacy",
       "useNoGraphics": false,
