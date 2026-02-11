@@ -1,0 +1,92 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:controls="using:FontPatcher.Avalonia.Controls"
+			 x:Class="FontPatcher.Avalonia.Controls.FileDropZone"
+			 x:DataType="controls:FileDropZone"
+			 x:Name="Root">
+	<Grid>
+		<Border x:Name="Surface"
+				Classes="drop-zone-surface"
+				CornerRadius="14"
+				MinHeight="{Binding ZoneHeight, ElementName=Root}"
+				ClipToBounds="True"
+				Background="#0C162D">
+			<Grid>
+				<Rectangle x:Name="DashRect"
+						   Classes="drop-zone-dash"
+						   RadiusX="14"
+						   RadiusY="14"
+						   StrokeThickness="1.5"
+						   StrokeDashArray="5,4"
+						   Fill="Transparent" />
+
+				<StackPanel HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Margin="20"
+							Spacing="7">
+					<Border x:Name="IconCircle"
+							Classes="drop-zone-icon"
+							Width="46"
+							Height="46"
+							CornerRadius="23"
+							HorizontalAlignment="Center">
+						<Viewbox Width="20" Height="20" VerticalAlignment="Center" Margin="0, 0, 0, 0">
+							<Path x:Name="IconPath"
+								  Data="{Binding IconPathData, ElementName=Root}"
+								  Width="24"
+								  Height="24"
+								  StrokeThickness="2"
+								  Margin="0, 0, 0, 0"
+								  StrokeLineCap="Round"
+								  HorizontalAlignment="Center"
+								  VerticalAlignment="Center" />
+						</Viewbox>
+
+					</Border>
+
+					<TextBlock x:Name="PrimaryText"
+							   HorizontalAlignment="Center"
+							   TextAlignment="Center"
+							   FontSize="14"
+							   FontWeight="SemiBold"
+							   TextTrimming="CharacterEllipsis"
+							   MaxWidth="360"
+							   Text="{Binding DisplayValue, ElementName=Root}" />
+
+					<TextBlock x:Name="SecondaryText"
+							   HorizontalAlignment="Center"
+							   TextAlignment="Center"
+							   FontSize="12"
+							   TextTrimming="CharacterEllipsis"
+							   MaxWidth="360"
+							   Text="{Binding HintText, ElementName=Root}" />
+				</StackPanel>
+
+				<Border x:Name="CheckIcon"
+						IsVisible="{Binding HasValue, ElementName=Root}"
+						HorizontalAlignment="Right"
+						VerticalAlignment="Top"
+						Width="20"
+						Height="20"
+						CornerRadius="10"
+						Margin="0,8,8,0"
+						Background="#3B82F6">
+
+					<Viewbox Width="18" Height="18" VerticalAlignment="Center" Margin="3, 0, 0, 0">
+							<Path
+								  Data="M4.6 10.3L8.1 13.6L15.2 6.4L16.6 7.8L8.1 16.3L3.2 11.6Z"
+								  Width="24"
+								  Height="24"
+								  StrokeThickness="25"
+								  Fill="White"
+								  Margin="0, 0, 0, 0"
+								  StrokeLineCap="Round"
+								  HorizontalAlignment="Center"
+								  VerticalAlignment="Center" />
+						</Viewbox>
+
+				</Border>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

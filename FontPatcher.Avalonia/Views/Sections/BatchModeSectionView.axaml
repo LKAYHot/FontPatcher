@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:FontPatcher.Avalonia.ViewModels"
+             xmlns:controls="using:FontPatcher.Avalonia.Controls"
+             x:Class="FontPatcher.Avalonia.Views.Sections.BatchModeSectionView"
+             x:DataType="vm:MainWindowViewModel">
+  <StackPanel Spacing="20">
+    <StackPanel Spacing="4">
+      <TextBlock Text="Mass Conversion" Classes="panel-title" />
+      <TextBlock Text="Process multiple font assets using a job manifest." Classes="panel-subtitle" />
+    </StackPanel>
+
+    <Border Classes="soft-card" Padding="28,26">
+      <StackPanel Spacing="18">
+        <StackPanel Spacing="8">
+          <Grid ColumnDefinitions="Auto,Auto,*" VerticalAlignment="Center">
+            <TextBlock Text="Jobs Manifest" Classes="field-label" />
+            <Border Grid.Column="1" Classes="required-chip" Margin="8,0,0,0">
+              <TextBlock Text="REQUIRED" Classes="required-chip-text" />
+            </Border>
+            <TextBlock Grid.Column="2" Text="JSON configuration file" Classes="field-hint" HorizontalAlignment="Right" Margin="12,0,0,0" />
+          </Grid>
+
+          <controls:FileDropZone
+            Value="{Binding JobsFile}"
+            Placeholder="Drop jobs_file.json here"
+            Accept=".json"
+            PickerTitle="Select jobs manifest"
+            IconPathData="M12 2L2 7L12 12L22 7L12 2 M2 12L12 17L22 12 M2 17L12 22L22 17"
+            ZoneHeight="154" />
+        </StackPanel>
+
+        <Grid ColumnDefinitions="*,*" ColumnSpacing="24">
+          <StackPanel Grid.Column="0" Spacing="8">
+            <Grid ColumnDefinitions="Auto,*" VerticalAlignment="Center">
+              <TextBlock Text="Parallel Threads" Classes="field-label" />
+              <TextBlock Grid.Column="1" Text="Max simultaneous conversions" Classes="field-hint" HorizontalAlignment="Right" />
+            </Grid>
+            <TextBox Classes="field"
+                     Text="{Binding MaxWorkers}"
+                     TextInput="OnNumericTextInput"
+                     TextChanged="OnNumericTextChanged" />
+          </StackPanel>
+
+          <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12" VerticalAlignment="Bottom" Margin="0,0,0,6">
+            <CheckBox Classes="switch" IsChecked="{Binding ContinueOnJobError}" />
+            <TextBlock Text="Continue on job failure" Classes="switch-label" VerticalAlignment="Center" />
+          </StackPanel>
+        </Grid>
+      </StackPanel>
+    </Border>
+  </StackPanel>
+</UserControl>

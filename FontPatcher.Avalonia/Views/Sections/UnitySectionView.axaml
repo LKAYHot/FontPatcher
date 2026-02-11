@@ -1,0 +1,165 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:FontPatcher.Avalonia.ViewModels"
+             xmlns:controls="using:FontPatcher.Avalonia.Controls"
+             x:Class="FontPatcher.Avalonia.Views.Sections.UnitySectionView"
+             x:DataType="vm:MainWindowViewModel">
+  <StackPanel Spacing="20">
+    <StackPanel Spacing="4">
+      <TextBlock Text="Unity SDK Configuration" Classes="panel-title" />
+      <TextBlock Text="Configure paths for the internal Unity engine wrapper." Classes="panel-subtitle" />
+    </StackPanel>
+
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="20" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="14">
+      <StackPanel Grid.Row="0" Grid.Column="0" Spacing="7">
+        <TextBlock Classes="field-label" Text="Unity Path" />
+        <TextBox Classes="field" Text="{Binding UnityPath, UpdateSourceTrigger=PropertyChanged}" />
+      </StackPanel>
+
+      <StackPanel Grid.Row="0" Grid.Column="1" Spacing="7">
+        <TextBlock Classes="field-label" Text="Hub Path" />
+        <TextBox Classes="field" Text="{Binding UnityHubPath, UpdateSourceTrigger=PropertyChanged}" />
+      </StackPanel>
+
+      <StackPanel Grid.Row="1" Grid.Column="0" Spacing="7">
+        <TextBlock Classes="field-label" Text="Target Version" />
+        <TextBox Classes="field" Text="{Binding UnityVersion, UpdateSourceTrigger=PropertyChanged}" />
+      </StackPanel>
+
+      <StackPanel Grid.Row="1" Grid.Column="1" Spacing="7">
+        <TextBlock Classes="field-label" Text="Legacy Epoch Support" />
+        <ComboBox Classes="field"
+                  ItemsSource="{Binding EpochOptions}"
+                  SelectedItem="{Binding SelectedEpoch}" />
+      </StackPanel>
+
+      <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Spacing="7">
+        <Grid ColumnDefinitions="Auto,*">
+          <TextBlock Classes="field-label" Text="Install Path (Root/Version/Editor)" />
+          <TextBlock Grid.Column="1"
+                     Classes="field-hint"
+                     HorizontalAlignment="Right"
+                     Text="Example: C:/Users/.../UnityEditors/2020.3.49f1/Editor" />
+        </Grid>
+        <TextBox Classes="field"
+                 Text="{Binding UnityInstallRoot, UpdateSourceTrigger=PropertyChanged}" />
+      </StackPanel>
+
+      <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Spacing="8">
+        <Grid ColumnDefinitions="Auto,*">
+          <TextBlock Classes="field-label" Text="Target Game (.exe)" />
+          <TextBlock Grid.Column="1"
+                     Classes="field-hint"
+                     HorizontalAlignment="Right"
+                     Text="Used for Unity version auto-detect" />
+        </Grid>
+
+        <controls:FileDropZone
+          Value="{Binding TargetGame}"
+          Placeholder="Drop game executable here"
+          Accept=".exe"
+          PickerTitle="Select target game executable"
+          IconPathData="M4 17L10 11L4 5 M12 19H20"
+          ZoneHeight="110" />
+      </StackPanel>
+    </Grid>
+
+    <Border Classes="soft-card unity-versions-card" Padding="18,14">
+      <StackPanel Spacing="10">
+        <TextBlock Text="INSTALLED UNITY VERSIONS" Classes="tiny-caption" />
+        <TextBlock IsVisible="{Binding ShowUnityVersionsEmptyHint}"
+                   Classes="field-hint"
+                   Text="No Unity versions detected yet. Check Install Path or Unity Path." />
+
+        <ListBox IsVisible="{Binding HasAvailableUnityVersions}"
+                 Classes="unity-version-list"
+                 ItemsSource="{Binding AvailableUnityVersions}"
+                 SelectedItem="{Binding SelectedInstalledUnityVersion, Mode=TwoWay}"
+                 SelectionMode="Single">
+          <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+              <WrapPanel Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+          </ListBox.ItemsPanel>
+          <ListBox.ItemTemplate>
+            <DataTemplate>
+              <StackPanel Spacing="2">
+                <TextBlock Text="{Binding Version}" Classes="unity-version-item-title" />
+                <TextBlock Text="{Binding Path}" Classes="unity-version-item-path" />
+              </StackPanel>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+      </StackPanel>
+    </Border>
+
+    <Border Classes="soft-card unity-status-card" Padding="18,14">
+      <StackPanel Spacing="12">
+        <TextBlock Text="UNITY VERSION STATUS" Classes="tiny-caption" />
+
+        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+          <TextBlock Classes="field-hint"
+                     VerticalAlignment="Center"
+                     Text="Required version:" />
+          <Border Grid.Column="1" Classes="unity-version-chip" HorizontalAlignment="Left">
+            <TextBlock Text="{Binding RequiredUnityVersionDisplayText}"
+                       Classes="unity-version-chip-text" />
+          </Border>
+        </Grid>
+
+        <TextBlock Text="{Binding UnityRequirementStatusText}"
+                   Classes="field-hint"
+                   TextWrapping="Wrap" />
+
+        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="14">
+          <TextBlock IsVisible="{Binding HasInstalledUnityEditorPath}"
+                     Text="{Binding InstalledUnityEditorPath}"
+                     FontFamily="{StaticResource FontMono}"
+                     FontSize="12"
+                     Foreground="#9FB3CD"
+                     VerticalAlignment="Center"
+                     TextWrapping="Wrap" />
+
+          <Button Grid.Column="1"
+                  IsVisible="{Binding ShowInstallRequiredUnityButton}"
+                  IsEnabled="{Binding CanInstallRequiredUnity}"
+                  Command="{Binding InstallRequiredUnityCommand}"
+                  Content="{Binding InstallRequiredUnityButtonText}"
+                  Classes="unity-install-button"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Center" />
+        </Grid>
+      </StackPanel>
+    </Border>
+
+    <Border Classes="soft-card" Padding="28,24">
+      <StackPanel Spacing="14">
+        <TextBlock Text="EXECUTION FLAGS" Classes="tiny-caption" />
+
+        <Grid ColumnDefinitions="*,*" ColumnSpacing="24">
+          <StackPanel Grid.Column="0" Spacing="6">
+            <StackPanel Orientation="Horizontal" Spacing="12">
+              <CheckBox Classes="switch" IsChecked="{Binding UseNographics}" />
+              <TextBlock Text="Headless (No-Graphics)" Classes="switch-label" VerticalAlignment="Center" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Spacing="12">
+              <CheckBox Classes="switch" IsChecked="{Binding AutoInstallHub}" />
+              <TextBlock Text="Allow Auto-Install Hub" Classes="switch-label" VerticalAlignment="Center" />
+            </StackPanel>
+          </StackPanel>
+
+          <StackPanel Grid.Column="1" Spacing="6">
+            <StackPanel Orientation="Horizontal" Spacing="12">
+              <CheckBox Classes="switch" IsChecked="{Binding StrictLtsMode}" />
+              <TextBlock Text="Strict LTS Mode" Classes="switch-label" VerticalAlignment="Center" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Spacing="12">
+              <CheckBox Classes="switch" IsChecked="{Binding KeepTemp}" />
+              <TextBlock Text="Preserve Temp Data" Classes="switch-label" VerticalAlignment="Center" />
+            </StackPanel>
+          </StackPanel>
+        </Grid>
+      </StackPanel>
+    </Border>
+  </StackPanel>
+</UserControl>

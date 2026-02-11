@@ -1,0 +1,11 @@
+{
+  "id": "font-bundle-builder",
+  "entryMethod": "FontPatcher.Editor.FontBundleBuilder.Run",
+  "outputFileName": "FontBundleBuilder.cs",
+  "sourceFile": "BuilderScripts/Sources/FontBundleBuilder.cs",
+  "epochs": [
+    "legacy",
+    "mid",
+    "modern"
+  ]
+}

@@ -1,0 +1,99 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:FontPatcher.Avalonia.ViewModels"
+             xmlns:controls="using:FontPatcher.Avalonia.Controls"
+             x:Class="FontPatcher.Avalonia.Views.Sections.SingleModeSectionView"
+             x:DataType="vm:MainWindowViewModel">
+  <StackPanel Spacing="28">
+    <StackPanel Spacing="4">
+      <TextBlock Text="Build Sequence" Classes="panel-title" />
+      <TextBlock Text="Follow the guided steps to prepare your font bundle." Classes="panel-subtitle" />
+    </StackPanel>
+
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="28">
+      <StackPanel Grid.Column="0" Spacing="8">
+        <Grid ColumnDefinitions="Auto,Auto,*" VerticalAlignment="Center">
+          <TextBlock Text="Step 1: Game Executable" Classes="field-label" />
+          <Border Grid.Column="1" Classes="required-chip" Margin="8,0,0,0">
+            <TextBlock Text="REQUIRED" Classes="required-chip-text" />
+          </Border>
+          <TextBlock Grid.Column="2" Text="Target game binary (.exe)" Classes="field-hint" HorizontalAlignment="Right" Margin="12,0,0,0" />
+        </Grid>
+
+        <controls:FileDropZone
+          Value="{Binding TargetGame}"
+          Placeholder="Drag game.exe here"
+          Accept=".exe"
+          PickerTitle="Select game executable"
+          IconPathData="M4 17L10 11L4 5 M12 19H20"
+          ZoneHeight="152" />
+      </StackPanel>
+
+      <StackPanel Grid.Column="1" Spacing="8">
+        <Grid ColumnDefinitions="Auto,Auto,*" VerticalAlignment="Center">
+          <TextBlock Text="Step 2: Source Font" Classes="field-label" />
+          <Border Grid.Column="1" Classes="required-chip" Margin="8,0,0,0">
+            <TextBlock Text="REQUIRED" Classes="required-chip-text" />
+          </Border>
+          <TextBlock Grid.Column="2" Text="Support TTF, OTF, WOFF" Classes="field-hint" HorizontalAlignment="Right" Margin="12,0,0,0" />
+        </Grid>
+
+        <controls:FileDropZone
+          Value="{Binding FontPath}"
+          Placeholder="Drop font file here"
+          Accept=".ttf,.otf,.woff,.ttc,.otc"
+          PickerTitle="Select source font"
+          IconPathData="M14.5 2H6A2 2 0 0 0 4 4V20A2 2 0 0 0 6 22H18A2 2 0 0 0 20 20V7.5L14.5 2 M14 2V8H20"
+          ZoneHeight="152" />
+      </StackPanel>
+    </Grid>
+
+    <StackPanel Opacity="{Binding SingleStep3Opacity}" IsHitTestVisible="{Binding IsSingleStep3Enabled}" Spacing="8">
+      <Grid ColumnDefinitions="Auto,Auto,*" VerticalAlignment="Center">
+        <TextBlock Text="Step 3: Output Directory" Classes="field-label" />
+        <Border Grid.Column="1" Classes="required-chip" Margin="8,0,0,0">
+          <TextBlock Text="REQUIRED" Classes="required-chip-text" />
+        </Border>
+        <TextBlock Grid.Column="2" Text="Where to save the bundles" Classes="field-hint" HorizontalAlignment="Right" Margin="12,0,0,0" />
+      </Grid>
+
+      <controls:FileDropZone
+        Value="{Binding OutputPath}"
+        Placeholder="Select output folder"
+        IsDirectory="True"
+        PickerTitle="Select output directory"
+        IconPathData="M4 20H20A2 2 0 0 0 22 18V8A2 2 0 0 0 20 6H12L10 4H4A2 2 0 0 0 2 6V18A2 2 0 0 0 4 20Z"
+        ZoneHeight="168" />
+    </StackPanel>
+
+    <Border Classes="soft-card"
+            Opacity="{Binding SingleFinalPolishOpacity}"
+            IsHitTestVisible="{Binding IsSingleFinalPolishEnabled}"
+            Padding="28,26">
+      <StackPanel Spacing="18">
+        <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+          <Border Width="4" Height="28" CornerRadius="3" Background="#3B82F6" />
+          <TextBlock Text="Final Polish (Optional)" Classes="panel-subheading" />
+        </StackPanel>
+
+        <Grid ColumnDefinitions="*,*" ColumnSpacing="22">
+          <StackPanel Grid.Column="0" Spacing="8">
+            <Grid ColumnDefinitions="Auto,*">
+              <TextBlock Text="Custom Bundle Name" Classes="field-label" />
+              <TextBlock Grid.Column="1" Text="Overrides default filename" Classes="field-hint" HorizontalAlignment="Right" />
+            </Grid>
+            <TextBox Classes="field" Watermark="e.g. game_ui_fonts" Text="{Binding BundleName}" />
+          </StackPanel>
+
+          <StackPanel Grid.Column="1" Spacing="8">
+            <Grid ColumnDefinitions="Auto,*">
+              <TextBlock Text="TMP Asset Name" Classes="field-label" />
+              <TextBlock Grid.Column="1" Text="Unity asset reference name" Classes="field-hint" HorizontalAlignment="Right" />
+            </Grid>
+            <TextBox Classes="field" Watermark="e.g. TMP_Global_Font" Text="{Binding TmpName}" />
+          </StackPanel>
+        </Grid>
+      </StackPanel>
+    </Border>
+  </StackPanel>
+</UserControl>

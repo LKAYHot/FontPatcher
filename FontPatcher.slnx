@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="FontPatcher.Avalonia/FontPatcher.Avalonia.csproj" />
+  <Project Path="FontPatcher.Cli/FontPatcher.Cli.csproj" />
+</Solution>

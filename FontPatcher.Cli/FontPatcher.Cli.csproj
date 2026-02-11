@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UseAppHost>false</UseAppHost>
+    <DefaultItemExcludes>$(DefaultItemExcludes);**\bin_verify\**;**\obj_verify\**</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\**\*.cs" />
+    <Compile Remove="obj\**\*.cs" />
+    <Compile Remove="bin_verify\**\*.cs" />
+    <Compile Remove="obj_verify\**\*.cs" />
+    <Compile Remove="bin_alt\**\*.cs" />
+    <Compile Remove="obj_alt\**\*.cs" />
+    <Compile Remove="bin_check\**\*.cs" />
+    <Compile Remove="obj_check\**\*.cs" />
+    <Compile Remove="BuilderScripts\Sources\**\*.cs" />
+    <Content Include="BuilderScripts\Definitions\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BuilderScripts\Sources\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

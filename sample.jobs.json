@@ -1,0 +1,22 @@
+{
+  "jobs": [
+    {
+      "id": "heartworm-main",
+      "font": "G:/TinyTools2/FontPatcher/Fonts/arialuni_sdf_u2019.ttf",
+      "output": "G:/TinyTools2/FontPatcher/Fonts/Output/heartworm",
+      "targetGame": "G:/SteamLibrary/steamapps/common/Heartworm/Heartworm.exe",
+      "buildTarget": "StandaloneWindows64",
+      "epoch": "auto"
+    },
+    {
+      "id": "legacy-2020-override",
+      "font": "G:/TinyTools2/FontPatcher/Fonts/arialuni_sdf_u2019.ttf",
+      "output": "G:/TinyTools2/FontPatcher/Fonts/Output/legacy",
+      "unityVersion": "2020.3.49f1",
+      "epoch": "legacy",
+      "useNoGraphics": false,
+      "pointSize": 90,
+      "padding": 8
+    }
+  ]
+}

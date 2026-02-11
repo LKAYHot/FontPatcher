@@ -1,0 +1,74 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:FontPatcher.Avalonia.ViewModels"
+             x:Class="FontPatcher.Avalonia.Views.Sections.AdvancedSectionView"
+             x:DataType="vm:MainWindowViewModel">
+  <StackPanel Spacing="20">
+    <StackPanel Spacing="4">
+      <TextBlock Text="Rendering Pipeline" Classes="panel-title" />
+      <TextBlock Text="Fine-tune SDF generation and atlas packaging." Classes="panel-subtitle" />
+    </StackPanel>
+
+    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="18">
+      <StackPanel Grid.Column="0" Spacing="7">
+        <TextBlock Classes="field-label" Text="Build Target" />
+        <ComboBox Classes="field"
+                  ItemsSource="{Binding BuildTargetOptions}"
+                  SelectedItem="{Binding SelectedBuildTarget}" />
+      </StackPanel>
+
+      <StackPanel Grid.Column="1" Spacing="7">
+        <TextBlock Classes="field-label" Text="Atlas Max Size" />
+        <TextBox Classes="field" Text="{Binding AtlasSizes}" />
+      </StackPanel>
+
+      <StackPanel Grid.Column="2" Spacing="7">
+        <TextBlock Classes="field-label" Text="Point Size" />
+        <TextBox Classes="field"
+                 Text="{Binding PointSize}"
+                 TextInput="OnNumericTextInput"
+                 TextChanged="OnNumericTextChanged" />
+      </StackPanel>
+    </Grid>
+
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="18">
+      <Border Grid.Column="0" Classes="soft-card" Padding="24,22">
+        <StackPanel Spacing="10">
+          <TextBlock Text="MEMORY &amp; PERFORMANCE" Classes="tiny-caption" />
+          <StackPanel Spacing="7">
+            <TextBlock Classes="field-label" Text="Warmup Limit" />
+            <TextBox Classes="field"
+                     Text="{Binding DynamicWarmupLimit}"
+                     TextInput="OnNumericTextInput"
+                     TextChanged="OnNumericTextChanged" />
+          </StackPanel>
+          <StackPanel Orientation="Horizontal" Spacing="12">
+            <CheckBox Classes="switch" IsChecked="{Binding ForceStatic}" />
+            <TextBlock Text="Force Static Generation" Classes="switch-label" VerticalAlignment="Center" />
+          </StackPanel>
+          <StackPanel Orientation="Horizontal" Spacing="12">
+            <CheckBox Classes="switch" IsChecked="{Binding ForceDynamic}" />
+            <TextBlock Text="Force Dynamic Atlas" Classes="switch-label" VerticalAlignment="Center" />
+          </StackPanel>
+        </StackPanel>
+      </Border>
+
+      <Border Grid.Column="1" Classes="soft-card" Padding="24,22">
+        <StackPanel Spacing="10">
+          <TextBlock Text="GEOMETRY" Classes="tiny-caption" />
+          <StackPanel Spacing="7">
+            <TextBlock Classes="field-label" Text="Padding (px)" />
+            <TextBox Classes="field"
+                     Text="{Binding Padding}"
+                     TextInput="OnNumericTextInput"
+                     TextChanged="OnNumericTextChanged" />
+          </StackPanel>
+          <StackPanel Orientation="Horizontal" Spacing="12">
+            <CheckBox Classes="switch" IsChecked="{Binding IncludeControl}" />
+            <TextBlock Text="Include Control Characters" Classes="switch-label" VerticalAlignment="Center" />
+          </StackPanel>
+        </StackPanel>
+      </Border>
+    </Grid>
+  </StackPanel>
+</UserControl>
