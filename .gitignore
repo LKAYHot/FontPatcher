@@ -412,6 +412,8 @@ Fonts/
 
 # Web frontend (not part of publish scope)
 FontBundle/
+# Release folder (only for developers)
+FontPatcherRelease/
 
 # Custom build/verification folders used in this repo
 **/bin_verify/
@@ -432,3 +434,4 @@ FontBundle/
 # Local environment files
 .env
 .env.*
+build-release.bat

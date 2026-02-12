@@ -5,6 +5,7 @@ namespace FontPatcher.Avalonia.Services;
 
 public sealed class CliBuildRunner : IBuildRunner
 {
+    private const string CliExeName = "FontPatcher.Cli.exe";
     private const string CliAssemblyName = "FontPatcher.Cli.dll";
 
     public async Task<BuildExecutionResult> RunAsync(
@@ -12,6 +13,13 @@ public sealed class CliBuildRunner : IBuildRunner
         Action<string, bool> onLine,
         CancellationToken cancellationToken)
     {
+        string? cliExePath = ResolveCliExecutablePath(request.WorkingDirectory);
+        if (cliExePath is not null)
+        {
+            return await ExecuteAsync(cliExePath, request.Arguments, request.WorkingDirectory, onLine, cancellationToken)
+                .ConfigureAwait(false);
+        }
+
         string? cliAssemblyPath = ResolveCliAssemblyPath(request.WorkingDirectory);
         if (cliAssemblyPath is not null)
         {
@@ -110,6 +118,19 @@ public sealed class CliBuildRunner : IBuildRunner
 
             onLine(line, isStdErr);
         }
+    }
+
+    private static string? ResolveCliExecutablePath(string repositoryRoot)
+    {
+        var candidates = new[]
+        {
+            Path.Combine(AppContext.BaseDirectory, CliExeName),
+            Path.Combine(repositoryRoot, CliExeName),
+            Path.Combine(repositoryRoot, "FontPatcher.Cli", "bin", "Debug", "net8.0", CliExeName),
+            Path.Combine(repositoryRoot, "FontPatcher.Cli", "bin", "Release", "net8.0", CliExeName)
+        };
+
+        return candidates.FirstOrDefault(File.Exists);
     }
 
     private static string? ResolveCliAssemblyPath(string repositoryRoot)
