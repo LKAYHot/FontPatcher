@@ -7,6 +7,16 @@ The project includes:
 - `FontPatcher.Cli` (automation and batch processing)
 - `FontPatcher.Avalonia` (desktop UI that launches the same CLI)
 
+## Screenshots
+Place screenshots in `Screenshots/` (repository root), for example:
+
+<p align="center">
+  <img src="Screenshots/main.png" alt="Main window" width="500" style="max-width:100%; margin:0 10px;" />
+  <img src="Screenshots/main1.png" alt="Folder Editor" width="500" style="max-width:100%; margin:0 10px;" />
+  <img src="Screenshots/main2.png" alt="Folder Editor" width="500" style="max-width:100%; margin:0 10px;" />
+
+</p>
+
 ---
 
 ## Русский
